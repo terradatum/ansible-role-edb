@@ -1,4 +1,16 @@
 ---
+- name: Update apt
+  apt:
+    update_cache: true
+  changed_when: false
+
+- name: Install gpg-agent and apt-transport-https to support the use of the EDB repo
+  apt:
+    name:
+      - gpg-agent
+      - apt-transport-https
+    state: present
+
 - name: Set up apt sources.list.d.
   template:
     src: edb-repo.list.j2

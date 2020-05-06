@@ -1,4 +1,14 @@
 ---
+- name: Setup EPEL.
+  include_role:
+    name: geerlingguy.repo-epel
+  when: ansible_distribution != 'Fedora'
+
+- name: Install gnupg2.
+  yum:
+    name: gnupg2
+    state: present
+
 - name: Install the EDB edb-repo RPM.
   yum:
     name: https://yum.enterprisedb.com/edb-repo-rpms/edb-repo-latest.noarch.rpm

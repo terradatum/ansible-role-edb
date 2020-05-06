@@ -1,5 +1,7 @@
 ---
-dependencies: []
+dependencies:
+  - role: geerlingguy.repo-epel
+    when: ansible_os_family == "RedHat"
 
 galaxy_info:
   author: terradatum
@@ -12,23 +14,12 @@ galaxy_info:
       versions:
         - 6
         - 7
-        - 8
-    - name: Fedora
-      versions:
-        - 29
-        - 30
-        - 31
     - name: Ubuntu
       versions:
-        - xenial
         - bionic
-        - focal
     - name: Debian
       versions:
-        - wheezy
-        - jessie
         - stretch
-        - buster
   galaxy_tags:
     - database
     - edb
