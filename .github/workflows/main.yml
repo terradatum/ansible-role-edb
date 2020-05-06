@@ -33,7 +33,7 @@ jobs:
       - name: Set up repo creds
         env:
           REPO_CREDS: ${{ secrets.REPO_CREDS }}
-        run: 'echo "$REPO_CREDS" > molecule/default/repo-creds.yml'
+        run: 'echo -n "$REPO_CREDS" > molecule/default/repo-creds.yml'
       - name: Install test dependencies
         run: conda install -y molecule yamllint ansible-lint docker-py click-help-colors
       - name: Run tests
