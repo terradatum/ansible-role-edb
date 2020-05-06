@@ -11,6 +11,9 @@ jobs:
   ansible:
     runs-on: [ubuntu-latest]
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
+    defaults:
+      run:
+        working-directory: terradatum.edb
     strategy:
       fail-fast: true
       matrix:
@@ -20,14 +23,10 @@ jobs:
         uses: actions/checkout@master
         with:
           path: terradatum.edb
-      - name: install tree
-        run: sudo apt-get install -y tree
-      - name: Debug the directory
-        run: tree
       - name: Set up repo creds
         env:
           REPO_CREDS: ${{ secrets.REPO_CREDS }}
-        run: echo "$REPO_CREDS" > ./molecule/default/repo-creds.yml
+        run: 'echo "$REPO_CREDS" > molecule/default/repo-creds.yml'
       - name: Install test dependencies
         run: pip install molecule yamllint ansible-lint docker
       - name: Run tests
