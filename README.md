@@ -8,7 +8,9 @@ Installs and configures EDB server on RHEL/CentOS or Debian/Ubuntu servers.
 
 In order to install the EDB PostgreSQL Advanced Server (EPAS) on the RedHat family of distros, you will need the EPEL to satisfy the package requirements.
 
-You will also need EDB repository credentials. See the example below for how to include those creds, or take a look at molecule/default/converge.yml
+You will also need EDB repository credentials. See the example below for how to include those creds.
+
+Make sure to review molecule/default/converge.yml for an example of the various "soft" requirements around preparing your system for the installation of these packages.
 
 Note that this role requires root access, so either run it in a playbook with a global `become: yes`, or invoke the role in your playbook like:
 
