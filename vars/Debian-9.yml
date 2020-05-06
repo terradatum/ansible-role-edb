@@ -1,10 +1,10 @@
 ---
-__postgresql_version: "9.6"
-__postgresql_data_dir: "/var/lib/postgresql/{{ __postgresql_version }}/main"
-__postgresql_bin_path: "/usr/lib/postgresql/{{ __postgresql_version }}/bin"
-__postgresql_config_path: "/etc/postgresql/{{ __postgresql_version }}/main"
-__postgresql_daemon: "postgresql@{{ postgresql_version }}-main"
-__postgresql_packages:
-  - postgresql
-  - postgresql-contrib
-  - libpq-dev
+__edb_version: "11"
+__edb_data_dir: "/var/lib/edb-as/{{ __edb_version }}/main"
+__edb_bin_path: "/usr/lib/edb-as/{{ __edb_version }}/bin"
+__edb_config_path: "/etc/edb-as/{{ __edb_version }}/main"
+__edb_daemon: edb-as@{{ __edb_version }}-main
+__edb_packages:
+  - edb-as{{ __edb_version }}
+  - edb-as{{ __edb_version }}-postgis-2.5
+  - edb-as{{ __edb_version }}-libpq-dev

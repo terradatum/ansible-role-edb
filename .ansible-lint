@@ -1,3 +1,6 @@
+exclude_paths:
+  - ./.github
+  - ./conda-env
 skip_list:
   - '405'
   - '503'

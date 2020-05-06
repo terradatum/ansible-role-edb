@@ -1,6 +1,6 @@
 ---
-- name: restart postgresql
+- name: restart edb
   service:
-    name: "{{ postgresql_daemon }}"
-    state: "{{ postgresql_restarted_state }}"
+    name: "{{ edb_daemon }}"
+    state: "{{ edb_restarted_state }}"
     sleep: 5

@@ -22,3 +22,7 @@ conda-env/*
 *.retry
 */__pycache__
 *.pyc
+
+# Ignore the molecule repo-creds.yml file.
+# This is where you put your EDB repo creds
+molecule/**/repo-creds.yml

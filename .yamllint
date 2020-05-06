@@ -1,5 +1,8 @@
 ---
 extends: default
+ignore: |
+  conda-env
+  .github
 rules:
   line-length:
     max: 120

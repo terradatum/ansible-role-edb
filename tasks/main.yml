@@ -12,12 +12,12 @@
 - include_tasks: initialize.yml
 - include_tasks: configure.yml
 
-- name: Ensure PostgreSQL is started and enabled on boot.
+- name: Ensure EDB is started and enabled on boot.
   service:
-    name: "{{ postgresql_daemon }}"
-    state: "{{ postgresql_service_state }}"
-    enabled: "{{ postgresql_service_enabled }}"
+    name: "{{ edb_daemon }}"
+    state: "{{ edb_service_state }}"
+    enabled: "{{ edb_service_enabled }}"
 
-# Configure PostgreSQL.
+# Configure EDB.
 - import_tasks: users.yml
 - import_tasks: databases.yml

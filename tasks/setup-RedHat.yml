@@ -1,16 +1,30 @@
 ---
-- name: Ensure PostgreSQL packages are installed.
+- name: Install the EDB edb-repo RPM.
   yum:
-    name: "{{ postgresql_packages }}"
+    name: https://yum.enterprisedb.com/edb-repo-rpms/edb-repo-latest.noarch.rpm
     state: present
-    enablerepo: "{{ postgresql_enablerepo | default(omit, true) }}"
-    # Don't let postgresql-contrib cause the /usr/bin/python symlink
+
+- name: Set the username/password for accessing the EDB repo
+  replace:
+    dest: /etc/yum.repos.d/edb.repo
+    regexp: "<username>:<password>"
+    replace: "{{ edb_repo_username }}:{{ edb_repo_password }}"
+
+- name: Update yum.
+  yum:
+    update_cache: true
+  changed_when: false
+
+- name: Ensure EDB packages are installed.
+  yum:
+    name: "{{ edb_packages }}"
+    state: present
+    # Don't let edb-contrib cause the /usr/bin/python symlink
     # to be installed, which breaks later Ansible runs on Fedora 30,
     # and affects system behavior in multiple ways.
     exclude: python-unversioned-command
 
-- name: Ensure PostgreSQL Python libraries are installed.
+- name: Ensure EDB Python libraries are installed.
   yum:
-    name: "{{ postgresql_python_library }}"
+    name: "{{ edb_python_library }}"
     state: present
-    enablerepo: "{{ postgresql_enablerepo | default(omit, true) }}"
