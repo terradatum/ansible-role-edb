@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        molecule_distro: [centos7, centos8, fedora31, ubuntu2004, ubuntu1804, debian10]
+        molecule_distro: [centos7, centos8, fedora31, ubuntu1604, ubuntu1804, debian10]
     steps:
       - name: Checkout
         uses: actions/checkout@master
