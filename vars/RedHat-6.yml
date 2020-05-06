@@ -1,5 +1,5 @@
 ---
-__edb_version: "12"
+__edb_version: "11"
 __edb_data_dir: "/var/lib/edb/as{{ __edb_version}}/data"
 __edb_bin_path: "/usr/edb/as{{ __edb_version}}/bin"
 __edb_config_path: "/var/lib/edb/as{{ __edb_version}}/data"
