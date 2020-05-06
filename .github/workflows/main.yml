@@ -13,6 +13,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, 'ci skip') && !contains(github.event.head_commit.message, 'skip ci')"
     defaults:
       run:
+        shell: bash -l -eo pipefail {0}
         working-directory: terradatum.edb
     strategy:
       fail-fast: true
@@ -23,12 +24,18 @@ jobs:
         uses: actions/checkout@master
         with:
           path: terradatum.edb
+      - name: Set up miniconda environment
+        uses: goanpeca/setup-miniconda@v1
+        with:
+          auto-update-conda: true
+          channels: conda-forge
+          activate-environment: conda-env
       - name: Set up repo creds
         env:
           REPO_CREDS: ${{ secrets.REPO_CREDS }}
         run: 'echo "$REPO_CREDS" > molecule/default/repo-creds.yml'
       - name: Install test dependencies
-        run: pip install molecule yamllint ansible-lint docker
+        run: conda install -y molecule yamllint ansible-lint docker-py click-help-colors
       - name: Run tests
         env:
           MOLECULE_DISTRO: ${{ matrix.molecule_distro }}
