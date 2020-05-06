@@ -23,7 +23,7 @@
             update_cache: true
           changed_when: false
 
-        - name: Install gpg-agent.
+        - name: Install gnupg2.
           yum:
             name: gnupg2
             state: present
@@ -42,6 +42,17 @@
           apt:
             name: gpg-agent
             state: present
+          when: 
+            - ( ansible_distribution == 'Ubuntu' and ansible_distribution_major_version >= '18') or
+              ( ansible_distribution == 'Debian' and ansible_distribution_major_version >= '8')
+
+        - name: Install gpg-agent.
+          apt:
+            name: gnupg-agent
+            state: present
+            when:
+              - ( ansible_distribution == 'Ubuntu' and ansible_distribution_major_version == '16') or
+                ( ansible_distribution == 'Debian' and ansible_distribution_major_version == '7')
 
       when: ansible_os_family == 'Debian'
 
