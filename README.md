@@ -4,6 +4,12 @@
 
 Installs and configures EDB server on RHEL/CentOS or Debian/Ubuntu servers.
 
+**NOTE: When cloning this repository, make sure to target `terradatum.edb` as your local repo.**
+
+```shell
+git clone git@github.com:terradatum/ansible-role-edb terradatum.edb
+```
+
 ## Requirements
 
 In order to install the EDB PostgreSQL Advanced Server (EPAS) on the RedHat family of distros, you will need the EPEL to satisfy the package requirements.
